@@ -1,0 +1,23 @@
+{
+  "dataset": "BraTS2020 fixed 295-case training pool",
+  "case_id_source": "experiment_protocol/splits/brats2020_80_20_295_74/train_ids.txt",
+  "train_pool_case_count": 295,
+  "n_splits": 5,
+  "seed": 12345,
+  "split_method": "legacy Dataset007 294-case split repaired with BraTS20_Training_355 in fold 4 validation",
+  "fold_validation_case_counts": [
+    59,
+    59,
+    59,
+    59,
+    59
+  ],
+  "fold_training_case_counts": [
+    236,
+    236,
+    236,
+    236,
+    236
+  ],
+  "split_file": "splits_final.json"
+}

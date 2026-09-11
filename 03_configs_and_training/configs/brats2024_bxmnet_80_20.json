@@ -1,0 +1,172 @@
+{
+  "config_name": "brats2024_bxmnet_80_20",
+  "dataset": {
+    "name": "Dataset006_BraTS2024_full",
+    "total_cases": 1350,
+    "train_cases": 1080,
+    "val_cases": 270
+  },
+  "trainer": "nnUNetTrainerBXMNet",
+  "split": {
+    "directory": "splits/brats2024_80_20_1080_270",
+    "file": "splits/brats2024_80_20_1080_270/splits_final.json"
+  },
+  "training": {
+    "configuration": "3d_fullres",
+    "plans": "nnUNetPlans",
+    "epochs": 500,
+    "iterations_per_epoch": 250,
+    "validation_iterations_per_epoch": 50,
+    "batch_size": 1,
+    "patch_size": [
+      96,
+      96,
+      96
+    ],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "weight_decay": 0.0001,
+    "lr_schedule": {
+      "type": "LinearLR -> ConstantLR -> CosineAnnealingLR",
+      "warmup_epochs": 10,
+      "warmup_start_factor": 0.2,
+      "hold_epochs": 20,
+      "cosine_eta_min": 1e-06,
+      "scheduler_total_epochs_in_code": 1000
+    },
+    "foreground_oversampling": 0.33,
+    "probabilistic_oversampling": false,
+    "amp": true,
+    "torch_compile": false,
+    "nnUNet_n_proc_DA": 2,
+    "checkpoint_save_interval_epochs": 50,
+    "validation_checkpoint": "best",
+    "export_validation_probabilities": true
+  },
+  "model": {
+    "input_channels": 4,
+    "num_classes": 4,
+    "encoder": {
+      "features_per_stage": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "n_blocks_per_stage": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "kernel_sizes": [
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ]
+      ],
+      "strides": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "conv_bias": false,
+      "normalization": "InstanceNorm3d(eps=1e-5, affine=True)",
+      "activation": "LeakyReLU(inplace=True)"
+    },
+    "neck": {
+      "neck_depth": 4,
+      "scan_mode": "full_6",
+      "mamba_layers": 1,
+      "drop_path_rate": 0.1
+    },
+    "decoder": {
+      "blocks_per_stage": 2,
+      "deep_supervision": true,
+      "fusion_mode": "mafcm",
+      "mafcm_alpha": 0.5,
+      "mafcm_beta": 0.25,
+      "upsample_mode": "trilinear"
+    },
+    "oaff": {
+      "fuse_mode": "aff",
+      "groups": 4,
+      "reduction_ratio": 8,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "tau": 0.6,
+      "pixel_head": true,
+      "channel_head": true,
+      "pdrop": 0.1
+    }
+  },
+  "evaluation": {
+    "regions": {
+      "WT": [
+        1,
+        2,
+        3
+      ],
+      "TC": [
+        1,
+        3
+      ],
+      "ET": [
+        3
+      ]
+    },
+    "metrics": [
+      "WT_Dice",
+      "TC_Dice",
+      "ET_Dice",
+      "AVG_Dice",
+      "WT_HD95",
+      "TC_HD95",
+      "ET_HD95",
+      "AVG_HD95"
+    ],
+    "case_level_output": true
+  },
+  "source_of_truth": [
+    "BXMNet_training_config_for_baseline_reproduction.md",
+    "custom_validation/full_brats24_fold0.csv",
+    "revision_bxmnet_experiments/BXM-13_brats2024_full/"
+  ]
+}

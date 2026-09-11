@@ -1,0 +1,15 @@
+{
+  "dataset": "BraTS2020",
+  "source_dataset_directory": "nnUNet_raw/Dataset004_BraTS2020_full",
+  "case_id_source": "custom_validation/full_brats20_fold0.csv",
+  "total_case_count": 369,
+  "train_case_count": 295,
+  "val_case_count": 74,
+  "split_ratio": "80:20",
+  "split_file": "splits_final.json",
+  "source_available_case_count": 368,
+  "missing_local_case_ids": [
+    "BraTS20_Training_355"
+  ],
+  "warning": "The logical 295/74 protocol includes any official IDs missing from the local raw directory; restore them before training."
+}
