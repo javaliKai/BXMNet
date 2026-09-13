@@ -26,8 +26,5 @@ BXMNet/
 `nnunetv2.training.nnUNetTrainer.bxmnet...` import 路径，因此实际运行时仍需要完整的
 nnU-Net 和 `dynamic-network-architectures` 依赖；本目录不复制整个 nnU-Net 框架。
 
-普通 BXMNet preset 的 neck depth 为 4；现有 BraTS2020 295 例五折最终配置使用
-`nnUNetTrainerBXMNetRevision`，neck depth 为 5。两套配置已分别保留。
-
 BraTS2020 的逻辑固定划分为 295/74，但当前原始数据缺少
 `BraTS20_Training_355`；恢复病例文件后才能直接使用该清单训练。
