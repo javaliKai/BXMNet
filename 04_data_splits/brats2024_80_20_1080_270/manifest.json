@@ -1,0 +1,10 @@
+{
+  "dataset": "BraTS2024",
+  "source_dataset_directory": "nnUNet_raw/Dataset006_BraTS2024_full",
+  "case_id_source": "custom_validation/full_brats24_fold0.csv",
+  "total_case_count": 1350,
+  "train_case_count": 1080,
+  "val_case_count": 270,
+  "split_ratio": "80:20",
+  "split_file": "splits_final.json"
+}

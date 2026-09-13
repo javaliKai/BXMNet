@@ -1,0 +1,10 @@
+{
+  "dataset": "BraTS2019",
+  "source_dataset_directory": "nnUNet_raw/Dataset002_BraTS2019_full",
+  "case_id_source": "custom_validation/brats2019_attentionunet.csv",
+  "total_case_count": 335,
+  "train_case_count": 268,
+  "val_case_count": 67,
+  "split_ratio": "80:20",
+  "split_file": "splits_final.json"
+}

@@ -1,0 +1,137 @@
+{
+  "decoder_fusion_mode": "mafcm",
+  "hss_kwargs": {
+    "aff_alpha": 1.0,
+    "aff_beta": 1.0,
+    "aff_groups": 4,
+    "aff_pdrop": 0.1,
+    "aff_r": 8,
+    "aff_tau": 0.6,
+    "aff_use_channel": true,
+    "aff_use_pixel": true,
+    "fuse_mode": "aff"
+  },
+  "model": {
+    "dcr": {
+      "dilation_xy": 1,
+      "disable_default_stem": false,
+      "force_dilation_stages": false,
+      "pool_type": "conv",
+      "resnet_d_skip": true,
+      "squeeze_excitation": false,
+      "squeeze_excitation_reduction_ratio": 0.0625,
+      "stem_channels": null,
+      "stochastic_depth_p": 0.0
+    },
+    "decoder": {
+      "decoder_fusion_mode": "mafcm",
+      "decoder_n_blocks_per_stage": 2,
+      "deep_supervision": true,
+      "mafcm_alpha": 0.5,
+      "mafcm_beta": 0.25,
+      "mafcm_up_mode": "trilinear",
+      "num_modalities": 4
+    },
+    "encoder": {
+      "conv_bias": false,
+      "conv_op": "<class 'torch.nn.modules.conv.Conv3d'>",
+      "dropout_op": null,
+      "dropout_op_kwargs": null,
+      "features_per_stage": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "kernel_sizes": [
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ]
+      ],
+      "n_blocks_per_stage": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "n_stages": 4,
+      "nonlin": "<class 'torch.nn.modules.activation.LeakyReLU'>",
+      "nonlin_kwargs": {
+        "inplace": true
+      },
+      "norm_op": "<class 'torch.nn.modules.instancenorm.InstanceNorm3d'>",
+      "norm_op_kwargs": {
+        "affine": true,
+        "eps": 1e-05
+      },
+      "strides": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    "input_channels": 4,
+    "neck": {
+      "neck_add_post_layernorm": true,
+      "neck_attn_drop": 0.0,
+      "neck_channels": null,
+      "neck_depth": 5,
+      "neck_drop_path_rate": 0.1,
+      "neck_expansion_factor": 1,
+      "neck_hss_kwargs": {
+        "aff_alpha": 1.0,
+        "aff_beta": 1.0,
+        "aff_groups": 4,
+        "aff_pdrop": 0.1,
+        "aff_r": 8,
+        "aff_tau": 0.6,
+        "aff_use_channel": true,
+        "aff_use_pixel": true,
+        "fuse_mode": "aff"
+      },
+      "neck_hss_scan_mode": "full_6",
+      "neck_mamba_layers": 1,
+      "neck_mlp_drop": 0.0,
+      "neck_orientation_order": null,
+      "neck_use_checkpoint": false
+    },
+    "num_classes": 4
+  },
+  "neck_depth": 5,
+  "preset": "brats2020_3d_fullres_v1",
+  "scan_mode": "full_6"
+}
